@@ -911,18 +911,20 @@ _dbus_error_from_errno (int error_number)
 #ifdef EPROTONOSUPPORT
     case EPROTONOSUPPORT:
       return DBUS_ERROR_NOT_SUPPORTED;
-#endif
+#else
 #ifdef WSAEPROTONOSUPPORT
     case WSAEPROTONOSUPPORT:
       return DBUS_ERROR_NOT_SUPPORTED;
 #endif
+#endif
 #ifdef EAFNOSUPPORT
     case EAFNOSUPPORT:
       return DBUS_ERROR_NOT_SUPPORTED;
-#endif
+#else
 #ifdef WSAEAFNOSUPPORT
     case WSAEAFNOSUPPORT:
       return DBUS_ERROR_NOT_SUPPORTED;
+#endif
 #endif
 #ifdef ENFILE
     case ENFILE:
@@ -951,34 +953,38 @@ _dbus_error_from_errno (int error_number)
 #ifdef ECONNREFUSED
     case ECONNREFUSED:
       return DBUS_ERROR_NO_SERVER;
-#endif
+#else
 #ifdef WSAECONNREFUSED
     case WSAECONNREFUSED:
       return DBUS_ERROR_NO_SERVER;
 #endif
+#endif
 #ifdef ETIMEDOUT
     case ETIMEDOUT:
       return DBUS_ERROR_TIMEOUT;
-#endif
+#else
 #ifdef WSAETIMEDOUT
     case WSAETIMEDOUT:
       return DBUS_ERROR_TIMEOUT;
 #endif
+#endif
 #ifdef ENETUNREACH
     case ENETUNREACH:
       return DBUS_ERROR_NO_NETWORK;
-#endif
+#else
 #ifdef WSAENETUNREACH
     case WSAENETUNREACH:
       return DBUS_ERROR_NO_NETWORK;
 #endif
+#endif
 #ifdef EADDRINUSE
     case EADDRINUSE:
       return DBUS_ERROR_ADDRESS_IN_USE;
-#endif
+#else
 #ifdef WSAEADDRINUSE
     case WSAEADDRINUSE:
       return DBUS_ERROR_ADDRESS_IN_USE;
+#endif
 #endif
 #ifdef EEXIST
     case EEXIST:
