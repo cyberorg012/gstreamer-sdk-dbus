@@ -106,6 +106,7 @@ uninstall-local::
 	rm -f $(DESTDIR)$(apidir)/*.html
 	rm -f $(DESTDIR)$(apidir)/*.png
 	rm -f $(DESTDIR)$(apidir)/*.css
+	rm -f $(DESTDIR)$(apidir)/*.js
 	rm -f $(DESTDIR)$(htmldir)/*.html
 	rm -f $(DESTDIR)$(docdir)/*.txt
 	rm -f $(DESTDIR)$(htmldir)/*.png
@@ -118,7 +119,7 @@ if DBUS_HAVE_MAN2HTML
 html_DATA += $(MAN_HTML_FILES)
 
 %.1.html: %.1
-	$(AM_V_GEN)( $(MAN2HTML) $< > $@.tmp && mv $@.tmp $@ )
+	$(AM_V_GEN)( $(MAN2HTML) < $< > $@.tmp && mv $@.tmp $@ )
 endif
 
 if DBUS_CAN_UPLOAD_DOCS

@@ -254,8 +254,8 @@ _dbus_write_pid_to_file_and_pipe (const DBusString *pidfile,
       DBusString pid;
       int bytes;
 
-      _dbus_verbose ("writing our pid to pipe %"PRIuPTR"\n",
-                     print_pid_pipe->fd_or_handle);
+      _dbus_verbose ("writing our pid to pipe %d\n",
+                     print_pid_pipe->fd);
       
       if (!_dbus_string_init (&pid))
         {
@@ -389,7 +389,6 @@ _dbus_request_file_descriptor_limit (unsigned int limit)
 #ifdef HAVE_SETRLIMIT
   struct rlimit lim;
   struct rlimit target_lim;
-  unsigned int current_limit;
 
   /* No point to doing this practically speaking
    * if we're not uid 0.  We expect the system
@@ -541,7 +540,7 @@ _dbus_user_at_console (const char *username,
                        DBusError  *error)
 {
 
-  DBusString f;
+  DBusString u, f;
   dbus_bool_t result;
 
   result = FALSE;
@@ -557,8 +556,9 @@ _dbus_user_at_console (const char *username,
       goto out;
     }
 
+  _dbus_string_init_const (&u, username);
 
-  if (!_dbus_string_append (&f, username))
+  if (!_dbus_concat_dir_and_file (&f, &u))
     {
       _DBUS_SET_OOM (error);
       goto out;

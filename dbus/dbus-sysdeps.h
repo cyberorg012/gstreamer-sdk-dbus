@@ -125,8 +125,6 @@ typedef unsigned long dbus_gid_t;
  * 
  */
 
-dbus_bool_t _dbus_open_tcp_socket  (int              *fd,
-                                    DBusError        *error);
 dbus_bool_t _dbus_close_socket     (int               fd,
                                     DBusError        *error);
 int         _dbus_read_socket      (int               fd,
@@ -310,8 +308,11 @@ int _dbus_poll (DBusPollFD *fds,
 
 void _dbus_sleep_milliseconds (int milliseconds);
 
-void _dbus_get_current_time (long *tv_sec,
-                             long *tv_usec);
+void _dbus_get_monotonic_time (long *tv_sec,
+                               long *tv_usec);
+
+void _dbus_get_real_time (long *tv_sec,
+                          long *tv_usec);
 
 /**
  * directory interface
