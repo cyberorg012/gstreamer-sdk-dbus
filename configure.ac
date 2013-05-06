@@ -958,7 +958,7 @@ save_libs="$LIBS"
 LIBS="$LIBS $THREAD_LIBS"
 AC_CHECK_FUNC(pthread_condattr_setclock,have_pthread_condattr_setclock=true,have_pthread_condattr_setclock=false)
 if test x$have_pthread_condattr_setclock = xtrue; then
-    AC_SEARCH_LIBS([clock_getres],[rt],[THREAD_LIBS="$THREAD_LIBS -lrt"])
+    AC_SEARCH_LIBS([clock_getres],[rt],[THREAD_LIBS="$THREAD_LIBS"])
     AC_MSG_CHECKING([for CLOCK_MONOTONIC])
     AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <time.h>
 #include <pthread.h>
